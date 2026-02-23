@@ -471,11 +471,13 @@
                     <div class="athlete-container"><span style="font-weight:700">${m.Opponent}</span><small style="color:#666">${m.Region}</small></div>
                     <div class="match-info">
                         <span class="stage-tag">${getStageName(m.Match)}</span><br>
-                        <strong>${m.Method.includes('Puntos') ? m.Method : 'Finalización (' + m.Method + ')'}</strong><br>
-          <small style="color: #666">${m.Age} | ${m.Weight} | Mat ${m.Mat} | ${m.Category}</small>
+          <strong>${['Puntos', 'Superioridad', '-'].includes(m.Method) ? m.Method : 'Finalización<br>(' + m.Method + ')'}</strong><br>
+          <small style = "color: #666" > ${m.Age} | ${m.Weight} | Mat ${m.Mat} | ${m.Category}</small>
                     </div>
-                    <button class="btn-play" onclick="play('${m.URL}', '${m.Start}', '${m.End}')">Video</button>
-                </div>`;
+          ${m.URL !== '-'
+            ? '<button class="btn-play" onclick="play(' + m.URL + ', ' + m.Start + ', ' + m.End + ')">Video</button>' : '<span></span>'
+          }
+                </div > `;
       });
     }
 
@@ -509,7 +511,7 @@
 
     window.onload = init;
   </script>
-  
+
   <script data-goatcounter="https://d-ortea.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 
